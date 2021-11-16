@@ -12,7 +12,10 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 
 // Peticiones HTTPS 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
+//Pipes
+import { NoimagePipe } from './pipes/noimage.pipe'
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http'
     HomeComponent,
     SearchComponent,
     ArtistComponent,
-    NavbarComponent
+    NavbarComponent,
+    NoimagePipe
   ],
   imports: [
     BrowserModule,
