@@ -1,1 +1,20 @@
-<p>artist works!</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+  <div class="col animated fadeIn puntero">
+
+    <div class="card">
+      <img [src]="artist.images | noimage" class="card-img-top" alt="...">
+     
+      <div class="card-body">
+        <h3> <span class="badge bg-success"> {{ artist.name }} </span> </h3>
+        <h5 *ngFor="let genre of artist.genres" > <span class="badge bg-primary"> {{ genre }} </span> </h5>
+      </div>
+
+	  <button [routerLink]="'/home'" class="btn btn-danger m-2"> Volver </button>
+
+    </div>
+
+  </div>
+
+</div>

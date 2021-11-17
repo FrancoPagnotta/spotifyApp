@@ -14,7 +14,7 @@ export class SpotifyService {
     const url = `https://api.spotify.com/v1/${ query }`;
 
     const headers = new HttpHeaders({
-      'Authorization' : 'Bearer BQA4wvILJG3BOPVSkkGzCLVi1HSEqOVtzkwVyi5-ykC9BzSYTEc-Qm0QYQsbJ7rbWm0AnI3Icwb6sWvCUGiVKclyYQvuFGuK2JPRIAaCohX-SpqNMGLxC37DHLU8Qijurj8sQdqxiCV-ID09BzHq2g'
+      'Authorization' : 'Bearer BQBnIsxHhBVZpU3Z5EQROw04Ca4kGYnOthNS0SrRA2B8mXm-j5bIG3gz1ietTmDSyTmV-qgDAKljcYjsZMCdiOfyur8yHSqVPqjwhCEmwci6O2gDg3G7VjxSGwCSbAAFxUdcLTKoE0jPeUR1Xmge3g'
     });
 
     return this._http.get(url,{ headers });
@@ -25,8 +25,13 @@ export class SpotifyService {
                 .pipe(map((res:any) => res.albums.items));
   }
   
-  getArtist(termino: string) {
+  getArtists(termino: string) {
     return this.getQuery(`search?q=${termino}&type=artist&limit=20`)
                 .pipe(map((res:any)=> res.artists.items));
+  }
+
+  getArtist(id: string) {
+    return this.getQuery(`artists/${id}`)
+                // .pipe(map((res:any)=> res)); // No hace falta transformar la data pasandola por el pipe map porque en este caso la peticion ya nos retorna el objeto del artista. 
   }
 }
