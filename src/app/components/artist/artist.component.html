@@ -1,5 +1,6 @@
+<!-- <app-loading *ngIf="loading" ></app-loading>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div *ngIf="!loading" class="row row-cols-1 row-cols-md-3 g-4">
 
   <div class="col animated fadeIn puntero">
 
@@ -10,11 +11,67 @@
         <h3> <span class="badge bg-success"> {{ artist.name }} </span> </h3>
         <h5 *ngFor="let genre of artist.genres" > <span class="badge bg-primary"> {{ genre }} </span> </h5>
       </div>
-
-	  <button [routerLink]="'/home'" class="btn btn-danger m-2"> Volver </button>
+	  
+	  <button [routerLink]="'/home'" class="btn btn-outline-danger m-2"> Volver </button>
 
     </div>
 
   </div>
 
+</div> -->
+
+
+<app-loading *ngIf="loading"></app-loading>
+
+
+<div class="row animated fadeIn" *ngIf="!loading">
+    <div class="col-2">
+        <img [src]="artist.images | noimage" class="img-thumbnail img-circle">
+    </div>
+
+    <div class="col">
+        <h3>{{ artist.name }}</h3>
+        <p>
+            <a [href]="artist.external_urls.spotify" target="_blank">
+          Ir a la página del artista
+        </a>
+        </p>
+
+    </div>
+
+    <div class="col-4 text-right">
+
+        <button routerLink="/search" class="btn btn-outline-danger">
+        Regresar
+      </button>
+
+    </div>
+</div>
+
+<div class="row m-5">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr class="text-white">
+          <th> Foto </th>
+          <th> Album </th>
+          <th> Canción </th>
+          <th> Vista Previa </th>
+        </tr>
+      </thead>
+
+      <tbody *ngFor="let track of topTracks" class="animated fadeIn">
+        <tr class="text-white">
+          <td>
+            <img [src]="track.album.images | noimage " alt="" class="img-thumb">
+          </td>
+          <td> {{ track.album.name }} </td>
+          <td> {{ track.name }} </td>
+          <td>
+            <iframe [src]="track.uri | domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
